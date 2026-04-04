@@ -8,6 +8,8 @@ import {
   Star, ChevronRight, Download
 } from 'lucide-react';
 
+import InteractiveNeuralVortex from './interactive-neural-vortex-background';
+
 // --- Components ---
 
 const ThemeToggle = () => {
@@ -207,7 +209,7 @@ const Navbar = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-slate-50 dark:bg-zinc-950 pt-24 pb-12 border-t border-slate-200 dark:border-zinc-800">
+  <footer className="bg-slate-50/80 dark:bg-zinc-950/80 backdrop-blur-sm pt-24 pb-12 border-t border-slate-200/50 dark:border-zinc-800/50">
     <div className="max-w-7xl mx-auto px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
         <div className="md:col-span-5 lg:col-span-4">
@@ -323,7 +325,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
+    <div className="min-h-screen bg-transparent">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         {/* Modern Abstract Background */}
@@ -443,7 +445,7 @@ const Home = () => {
       </section>
 
       {/* Interactive Feature Viewer */}
-      <section className="py-32 bg-slate-50 dark:bg-zinc-900/30 border-y border-slate-200 dark:border-zinc-800" id="features">
+      <section className="py-32 bg-slate-50/80 dark:bg-zinc-900/30 border-y border-slate-200/50 dark:border-zinc-800/50 backdrop-blur-sm" id="features">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="mb-20 md:text-center max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
@@ -522,7 +524,7 @@ const Home = () => {
       </section>
 
       {/* App Showcase Section */}
-      <section className="py-32 relative overflow-hidden bg-slate-900 dark:bg-zinc-950" id="apps">
+      <section className="py-32 relative overflow-hidden bg-slate-900/90 dark:bg-zinc-950/80 backdrop-blur-sm" id="apps">
         {/* Background Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none" />
         
@@ -579,7 +581,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative bg-white dark:bg-zinc-950">
+      <section className="py-32 relative bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8">
             Ready to start practicing?
@@ -604,7 +606,7 @@ const Home = () => {
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 pt-32 pb-24">
+    <div className="min-h-screen bg-transparent pt-32 pb-24">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -678,7 +680,7 @@ const PrivacyPolicy = () => {
 
 const DeleteAccount = () => {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 pt-32 pb-24">
+    <div className="min-h-screen bg-transparent pt-32 pb-24">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -718,16 +720,19 @@ const DeleteAccount = () => {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col font-sans selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-indigo-100 bg-white dark:bg-zinc-950">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/ceemdms/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/ceemdms/delete-account" element={<DeleteAccount />} />
-          </Routes>
-        </main>
-        <Footer />
+      <div className="min-h-screen flex flex-col font-sans selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-indigo-100 bg-white dark:bg-zinc-950 relative">
+        <InteractiveNeuralVortex />
+        <div className="relative z-10 flex flex-col flex-grow">
+          <Navbar />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/ceemdms/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/ceemdms/delete-account" element={<DeleteAccount />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </div>
     </Router>
   );
