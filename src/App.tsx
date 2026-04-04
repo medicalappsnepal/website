@@ -8,21 +8,26 @@ import {
   Star, ChevronRight, Download
 } from 'lucide-react';
 
-import InteractiveNeuralVortex from './interactive-neural-vortex-background';
+import { Boxes } from './background-boxes';
+import RealismButton from './shiny-borders-button';
+import GlowingShadow from './glowing-shadow';
 
 // --- Components ---
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (isSystemDark) {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-    } else {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
       document.documentElement.classList.remove('dark');
       setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+      if (!savedTheme) {
+        localStorage.setItem('theme', 'dark');
+      }
     }
   }, []);
 
@@ -30,9 +35,11 @@ const ThemeToggle = () => {
     if (isDark) {
       document.documentElement.classList.remove('dark');
       setIsDark(false);
+      localStorage.setItem('theme', 'light');
     } else {
       document.documentElement.classList.add('dark');
       setIsDark(true);
+      localStorage.setItem('theme', 'dark');
     }
   };
 
@@ -99,12 +106,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 top-0 transition-all duration-500 ${
+    <nav className={`fixed w-full z-50 top-0 transition-all duration-500 pointer-events-none ${
       scrolled 
         ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-zinc-800/50 py-3' 
         : 'bg-transparent py-5'
     }`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pointer-events-auto">
         <div className="flex justify-between items-center">
           <Logo />
           
@@ -168,7 +175,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-zinc-950 border-b border-slate-200 dark:border-zinc-800 overflow-hidden shadow-2xl"
           >
-            <div className="px-6 py-6 flex flex-col gap-2">
+            <div className="px-6 py-6 flex flex-col gap-2 pointer-events-auto">
               {links.map((link) => {
                 const isActive = link.path.includes('#') 
                   ? location.pathname + location.hash === link.path
@@ -209,8 +216,8 @@ const Navbar = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-slate-50/80 dark:bg-zinc-950/80 backdrop-blur-sm pt-24 pb-12 border-t border-slate-200/50 dark:border-zinc-800/50">
-    <div className="max-w-7xl mx-auto px-6 lg:px-8">
+  <footer className="bg-slate-50/80 dark:bg-zinc-950/80 backdrop-blur-sm pt-24 pb-12 border-t border-slate-200/50 dark:border-zinc-800/50 pointer-events-none">
+    <div className="max-w-7xl mx-auto px-6 lg:px-8 pointer-events-auto">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
         <div className="md:col-span-5 lg:col-span-4">
           <Logo />
@@ -325,9 +332,9 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen bg-transparent pointer-events-none">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden pointer-events-none">
         {/* Modern Abstract Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-indigo-500/10 dark:bg-indigo-500/10 blur-[120px]" />
@@ -338,7 +345,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pointer-events-auto">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -380,15 +387,14 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
             >
-              <a 
+              <RealismButton 
+                text="Visit Store"
                 href="https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:scale-105 transition-all duration-300 shadow-xl shadow-slate-900/20 dark:shadow-white/10"
-              >
-                <Download className="w-5 h-5" />
-                <span>Visit Store</span>
-              </a>
+                icon={<Download className="w-5 h-5" />}
+                className="w-full sm:w-auto"
+              />
               <a 
                 href="#features"
                 className="group w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-900 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
@@ -405,9 +411,14 @@ const Home = () => {
               className="mt-12 flex items-center gap-4 text-sm font-medium text-slate-500 dark:text-zinc-400"
             >
               <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
+                {[
+                  "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=100&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1594824436951-7f1267da4c1d?q=80&w=100&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=100&auto=format&fit=crop"
+                ].map((imgUrl, i) => (
                   <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-zinc-950 bg-slate-200 dark:bg-zinc-800 flex items-center justify-center overflow-hidden">
-                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" className="w-full h-full object-cover" />
+                    <img src={imgUrl} alt="Nepali Doctor" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                 ))}
               </div>
@@ -445,8 +456,8 @@ const Home = () => {
       </section>
 
       {/* Interactive Feature Viewer */}
-      <section className="py-32 bg-slate-50/80 dark:bg-zinc-900/30 border-y border-slate-200/50 dark:border-zinc-800/50 backdrop-blur-sm" id="features">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-32 bg-slate-50/80 dark:bg-zinc-900/30 border-y border-slate-200/50 dark:border-zinc-800/50 backdrop-blur-sm pointer-events-none" id="features">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 pointer-events-auto">
           <div className="mb-20 md:text-center max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
               Engineered for retention.
@@ -524,11 +535,11 @@ const Home = () => {
       </section>
 
       {/* App Showcase Section */}
-      <section className="py-32 relative overflow-hidden bg-slate-900/90 dark:bg-zinc-950/80 backdrop-blur-sm" id="apps">
+      <section className="py-32 relative overflow-hidden bg-slate-900/90 dark:bg-zinc-950/80 backdrop-blur-sm pointer-events-none" id="apps">
         {/* Background Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pointer-events-auto">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-8 backdrop-blur-md">
@@ -554,15 +565,17 @@ const Home = () => {
                 ))}
               </ul>
 
-              <a 
-                href="https://play.google.com/store/apps/details?id=com.mdmsnepal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-indigo-500 text-white font-bold hover:bg-indigo-400 hover:scale-105 transition-all duration-300 shadow-xl shadow-indigo-500/25"
-              >
-                <Smartphone className="w-6 h-6" />
-                Download on Google Play
-              </a>
+              <GlowingShadow>
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.mdmsnepal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white font-bold transition-all duration-300"
+                >
+                  <Smartphone className="w-6 h-6" />
+                  Download on Google Play
+                </a>
+              </GlowingShadow>
             </div>
 
             <div className="relative flex justify-center lg:justify-end">
@@ -581,23 +594,21 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <section className="py-32 relative bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm pointer-events-none">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center pointer-events-auto">
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8">
             Ready to start practicing?
           </h2>
           <p className="text-xl text-slate-600 dark:text-zinc-400 mb-12 font-medium max-w-2xl mx-auto">
             Join thousands of medical students who are already using our platform to prepare smarter and score higher.
           </p>
-          <a 
+          <RealismButton 
+            text="Visit Store"
             href="https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-slate-900/20 dark:shadow-white/10"
-          >
-            Visit Store
-            <ArrowRight className="w-5 h-5" />
-          </a>
+            icon={<ArrowRight className="w-5 h-5" />}
+          />
         </div>
       </section>
     </div>
@@ -606,8 +617,8 @@ const Home = () => {
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-transparent pt-32 pb-24">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+    <div className="min-h-screen bg-transparent pt-32 pb-24 pointer-events-none">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 pointer-events-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -680,8 +691,8 @@ const PrivacyPolicy = () => {
 
 const DeleteAccount = () => {
   return (
-    <div className="min-h-screen bg-transparent pt-32 pb-24">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8">
+    <div className="min-h-screen bg-transparent pt-32 pb-24 pointer-events-none">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 pointer-events-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -720,11 +731,14 @@ const DeleteAccount = () => {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col font-sans selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-indigo-100 bg-white dark:bg-zinc-950 relative">
-        <InteractiveNeuralVortex />
-        <div className="relative z-10 flex flex-col flex-grow">
+      <div className="min-h-screen flex flex-col font-sans selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-indigo-100 bg-transparent relative">
+        <div className="fixed inset-0 w-full h-full z-0 overflow-hidden bg-slate-50 dark:bg-slate-950 pointer-events-auto">
+          <div className="absolute inset-0 w-full h-full bg-slate-50 dark:bg-slate-950 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+          <Boxes />
+        </div>
+        <div className="relative z-10 flex flex-col flex-grow pointer-events-none">
           <Navbar />
-          <main className="flex-grow">
+          <main className="flex-grow pointer-events-none">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/ceemdms/privacy-policy" element={<PrivacyPolicy />} />
