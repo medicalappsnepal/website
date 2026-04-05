@@ -5,12 +5,15 @@ import {
   Menu, X, BookOpen, Brain, 
   ShieldCheck, Smartphone, Mail, MessageCircle, FileText,
   CheckCircle2, BarChart3, Bookmark, Clock, Moon, Sun, ArrowRight,
-  Star, ChevronRight, Download
+  Star, ChevronRight, Download, CreditCard
 } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 
 import { Boxes } from './background-boxes';
 import RealismButton from './shiny-borders-button';
 import GlowingShadow from './glowing-shadow';
+import PricingSection from './pricing-blocks';
+import { Button as NeonButton } from './components/ui/neon-button';
 
 // --- Components ---
 
@@ -387,14 +390,12 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
             >
-              <RealismButton 
-                text="Visit Store"
-                href="https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US"
-                target="_blank"
-                rel="noopener noreferrer"
-                icon={<Download className="w-5 h-5" />}
-                className="w-full sm:w-auto"
-              />
+              <NeonButton 
+                onClick={() => window.open("https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US", "_blank", "noopener,noreferrer")}
+                className="w-full sm:w-auto font-bold text-lg px-8 py-4"
+              >
+                Visit Store
+              </NeonButton>
               <a 
                 href="#features"
                 className="group w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-900 dark:text-white font-bold hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
@@ -414,7 +415,7 @@ const Home = () => {
                 {[
                   "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=100&auto=format&fit=crop",
                   "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop",
-                  "https://images.unsplash.com/photo-1594824436951-7f1267da4c1d?q=80&w=100&auto=format&fit=crop",
+                  "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=100&auto=format&fit=crop",
                   "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=100&auto=format&fit=crop"
                 ].map((imgUrl, i) => (
                   <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-zinc-950 bg-slate-200 dark:bg-zinc-800 flex items-center justify-center overflow-hidden">
@@ -565,17 +566,26 @@ const Home = () => {
                 ))}
               </ul>
 
-              <GlowingShadow>
-                <a 
-                  href="https://play.google.com/store/apps/details?id=com.mdmsnepal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white font-bold transition-all duration-300"
-                >
-                  <Smartphone className="w-6 h-6" />
-                  Download on Google Play
-                </a>
-              </GlowingShadow>
+              <div className="flex flex-col items-start gap-6 w-full">
+                <PricingSection />
+
+                <GlowingShadow>
+                  <a 
+                    href="https://play.google.com/store/apps/details?id=com.mdmsnepal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white font-bold transition-all duration-300"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.593 1.343a1.86 1.86 0 0 0-.48 1.31v18.694c0 .524.186.98.48 1.31l.063.06 10.51-10.51v-.214L3.656 1.283l-.063.06z" fill="#00E676"/>
+                      <path d="M17.495 15.244l-3.328-3.328v-.214l3.328-3.328.083.047 3.94 2.24c1.127.64 1.127 1.688 0 2.328l-3.94 2.24-.083.047z" fill="#FFC107"/>
+                      <path d="M14.167 11.916l-10.574 10.574c-.36.36-.94.407-1.46.113l12.034-6.84 3.84-2.184-3.84-1.663z" fill="#FF3D00"/>
+                      <path d="M14.167 11.916L18.007 10.253l-3.84-2.184-12.034-6.84c.52-.294 1.1-.247 1.46.113l10.574 10.574z" fill="#29B6F6"/>
+                    </svg>
+                    Download on Google Play
+                  </a>
+                </GlowingShadow>
+              </div>
             </div>
 
             <div className="relative flex justify-center lg:justify-end">
@@ -602,13 +612,12 @@ const Home = () => {
           <p className="text-xl text-slate-600 dark:text-zinc-400 mb-12 font-medium max-w-2xl mx-auto">
             Join thousands of medical students who are already using our platform to prepare smarter and score higher.
           </p>
-          <RealismButton 
-            text="Visit Store"
-            href="https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US"
-            target="_blank"
-            rel="noopener noreferrer"
-            icon={<ArrowRight className="w-5 h-5" />}
-          />
+          <NeonButton 
+            onClick={() => window.open("https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US", "_blank", "noopener,noreferrer")}
+            className="font-bold text-lg px-8 py-4"
+          >
+            Visit Store
+          </NeonButton>
         </div>
       </section>
     </div>
