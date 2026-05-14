@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Menu, X, BookOpen, Brain, 
   ShieldCheck, Smartphone, Mail, MessageCircle, FileText,
-  CheckCircle2, BarChart3, Bookmark, Clock, Moon, Sun, ArrowRight,
+  CheckCircle2, BarChart3, Bookmark, Clock, Moon, Sun, ArrowRight, ArrowLeft,
   Star, ChevronRight, Download, CreditCard
 } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
@@ -222,13 +222,13 @@ const Footer = () => (
   <footer className="bg-slate-50/80 dark:bg-zinc-950/80 backdrop-blur-sm pt-24 pb-12 border-t border-slate-200/50 dark:border-zinc-800/50 pointer-events-none">
     <div className="max-w-7xl mx-auto px-6 lg:px-8 pointer-events-auto">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
-        <div className="md:col-span-5 lg:col-span-4">
+        <div className="md:col-span-5 lg:col-span-4 flex flex-col items-start">
           <Logo />
           <p className="mt-6 text-slate-500 dark:text-zinc-400 text-sm leading-relaxed max-w-xs">
             Empowering medical students in Nepal with premium, high-yield preparation tools designed for academic excellence and exam success.
           </p>
         </div>
-        <div className="md:col-span-2 lg:col-span-2 lg:col-start-6">
+        <div className="md:col-span-2 lg:col-span-2 lg:col-start-6 lg:pt-2">
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">CEE MDMS</h3>
           <ul className="space-y-4">
             <li>
@@ -248,7 +248,7 @@ const Footer = () => (
             </li>
           </ul>
         </div>
-        <div className="md:col-span-2 lg:col-span-2">
+        <div className="md:col-span-2 lg:col-span-2 lg:pt-2">
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">NMCLE MBBS</h3>
           <ul className="space-y-4">
             <li>
@@ -268,7 +268,7 @@ const Footer = () => (
             </li>
           </ul>
         </div>
-        <div className="md:col-span-3 lg:col-span-3">
+        <div className="md:col-span-3 lg:col-span-3 lg:pt-2">
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">Connect</h3>
           <ul className="space-y-4">
             <li>
@@ -712,6 +712,12 @@ const PrivacyPolicy = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
         >
+          <div className="mb-6 md:mb-8 text-left">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">CEE MDMS: Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Privacy Policy & Terms of Service</h2>
@@ -786,6 +792,12 @@ const DeleteAccount = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-zinc-900 rounded-[2rem] p-6 md:p-10 border border-slate-200 dark:border-zinc-800 shadow-xl shadow-slate-200/40 dark:shadow-none"
         >
+          <div className="mb-6 md:mb-8 text-left">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">CEE MDMS: Nepal Past Questions</h1>
             <h2 className="text-xl md:text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium">Delete Account</h2>
@@ -823,6 +835,12 @@ const NmcleDeleteAccount = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-zinc-900 rounded-[2rem] p-6 md:p-10 border border-slate-200 dark:border-zinc-800 shadow-xl shadow-slate-200/40 dark:shadow-none"
         >
+          <div className="mb-6 md:mb-8 text-left">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">NMCLE MBBS: Nepal Past Questions</h1>
             <h2 className="text-xl md:text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium">Delete Account</h2>
@@ -860,6 +878,12 @@ const NmclePrivacyPolicy = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
         >
+          <div className="mb-6 md:mb-8 text-left">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">NMCLE MBBS: Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Privacy Policy & Terms of Service</h2>
@@ -934,6 +958,12 @@ const NmcleTermsOfService = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
         >
+          <div className="mb-6 md:mb-8 text-left">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">NMCLE MBBS: Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Terms of Service</h2>
@@ -1000,6 +1030,12 @@ const TermsOfService = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
         >
+          <div className="mb-6 md:mb-8 text-left">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">CEE MDMS: Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Terms of Service</h2>
