@@ -59,11 +59,11 @@ const ThemeToggle = () => {
 
 const Logo = () => (
   <Link to="/" className="flex items-center gap-3 z-50 relative group">
-    <div className="relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white dark:bg-zinc-900 shadow-xl shadow-indigo-500/10 border border-slate-100 dark:border-zinc-800 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+    <div className="relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-105">
       <img 
-        src="https://drive.google.com/thumbnail?id=1xi9A5n3MaHT5LxqlewfrI6kI67OAur8A&sz=w1000" 
+        src="https://drive.google.com/thumbnail?id=1ZhSRkiKrVPhfvmb5OYR6dzK3zUKV6DXl&sz=w1000" 
         alt="Medical Apps Nepal" 
-        className="w-full h-full object-contain p-1"
+        className="w-full h-full object-contain"
         referrerPolicy="no-referrer"
       />
     </div>
@@ -225,15 +225,20 @@ const Footer = () => (
         <div className="md:col-span-5 lg:col-span-4">
           <Logo />
           <p className="mt-6 text-slate-500 dark:text-zinc-400 text-sm leading-relaxed max-w-xs">
-            Empowering medical students in Nepal with premium, high-yield preparation tools for CEE MDMS and beyond.
+            Empowering medical students in Nepal with premium, high-yield preparation tools designed for academic excellence and exam success.
           </p>
         </div>
-        <div className="md:col-span-3 lg:col-span-2 lg:col-start-7">
+        <div className="md:col-span-2 lg:col-span-2 lg:col-start-6">
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">CEE MDMS</h3>
           <ul className="space-y-4">
             <li>
               <Link to="/ceemdms/privacy-policy" className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors">
                 Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/ceemdms/terms-of-service" className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors">
+                Terms of Service
               </Link>
             </li>
             <li>
@@ -243,7 +248,27 @@ const Footer = () => (
             </li>
           </ul>
         </div>
-        <div className="md:col-span-4 lg:col-span-3">
+        <div className="md:col-span-2 lg:col-span-2">
+          <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">NMCLE MBBS</h3>
+          <ul className="space-y-4">
+            <li>
+              <Link to="/nmcle/privacy-policy" className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/nmcle/terms-of-service" className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors">
+                Terms of Service
+              </Link>
+            </li>
+            <li>
+              <Link to="/nmcle/delete-account" className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors">
+                Delete Account
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="md:col-span-3 lg:col-span-3">
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">Connect</h3>
           <ul className="space-y-4">
             <li>
@@ -592,11 +617,65 @@ const Home = () => {
               <div className="relative w-[300px] md:w-[360px] rounded-[3rem] bg-slate-800 p-3 shadow-2xl shadow-indigo-500/20 border border-slate-700 rotate-[-4deg] hover:rotate-0 transition-transform duration-700 ease-out group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-blue-500 rounded-[3rem] opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
                 <img 
-                  src="https://drive.google.com/thumbnail?id=1_xfcw3ZPsbI6-BPupyrytmCnrf5Pbdmo&sz=w1000" 
+                  src="https://drive.google.com/thumbnail?id=1Dkmh9CoL8h8kBAMhyzGp85T9zTOFK1WA&sz=w1000" 
                   alt="App Logo" 
                   className="w-full h-auto rounded-[2.5rem] relative z-10"
                   referrerPolicy="no-referrer"
                 />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NMCLE MBBS App Showcase Section */}
+      <section className="py-32 relative overflow-hidden bg-slate-950/90 dark:bg-black/95 backdrop-blur-md pointer-events-none" id="nmcle-apps">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/20 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pointer-events-auto">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <div className="order-2 lg:order-1 relative flex justify-center lg:justify-start">
+              <div className="relative w-[300px] md:w-[360px] rounded-[3rem] bg-slate-800 p-3 shadow-2xl shadow-emerald-500/20 border border-slate-700 rotate-[4deg] hover:rotate-0 transition-transform duration-700 ease-out group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-[3rem] opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
+                <img 
+                  src="https://drive.google.com/thumbnail?id=1pLTxitMyYgvNmydhSiYcM4TePgY4BNlv&sz=w1000" 
+                  alt="NMCLE MBBS App Logo" 
+                  className="w-full h-auto rounded-[2.5rem] relative z-10"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-8 backdrop-blur-md">
+                <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                <span className="text-xs font-bold text-white tracking-wide uppercase">New Release</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                NMCLE MBBS: Nepal Past Questions
+              </h2>
+              <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-medium">
+                The ultimate companion for medical students in Nepal. Master 20 subjects with memory-based past questions, in-depth explanations, and smart analytics designed for your success.
+              </p>
+              
+              <ul className="space-y-5 mb-12">
+                {['20+ Subjects Covered', 'Detailed Rationales', 'Performance Tracking', 'Smart Review'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 text-slate-200 font-medium text-lg">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                      <CheckCircle2 className="w-5 h-5" />
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col items-start gap-6 w-full">
+                <PricingSection />
+
+                <div className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-slate-800 text-slate-400 font-bold border border-slate-700 cursor-not-allowed">
+                  Coming Soon
+                </div>
               </div>
             </div>
           </div>
@@ -735,6 +814,257 @@ const DeleteAccount = () => {
   );
 };
 
+const NmcleDeleteAccount = () => {
+  return (
+    <div className="min-h-screen bg-transparent pt-32 pb-24 pointer-events-none">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white dark:bg-zinc-900 rounded-[2rem] p-6 md:p-10 border border-slate-200 dark:border-zinc-800 shadow-xl shadow-slate-200/40 dark:shadow-none"
+        >
+          <div className="text-center mb-10">
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">NMCLE MBBS: Nepal Past Questions</h1>
+            <h2 className="text-xl md:text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium">Delete Account</h2>
+            <p className="text-slate-600 dark:text-zinc-400 font-medium">
+              Request account deletion for <strong>NMCLE MBBS: Nepal Past Questions</strong>.
+            </p>
+          </div>
+          
+          <div className="w-full h-[800px] md:h-[900px] overflow-hidden rounded-2xl border border-slate-200 dark:border-zinc-800 relative bg-slate-50 dark:bg-zinc-950 shadow-inner">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdYYw8PYNON2bq3Zy0Y-52C0d0khn4d80a5cW6W3sbkpcUJ-A/viewform?embedded=true" 
+              width="100%" 
+              height="100%" 
+              frameBorder="0" 
+              marginHeight={0} 
+              marginWidth={0} 
+              className="absolute top-0 left-0 w-full h-full"
+              title="Delete Account Form"
+            >
+              Loading…
+            </iframe>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+const NmclePrivacyPolicy = () => {
+  return (
+    <div className="min-h-screen bg-transparent pt-32 pb-24 pointer-events-none">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
+        >
+          <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">NMCLE MBBS: Nepal Past Questions</h1>
+            <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Privacy Policy & Terms of Service</h2>
+            <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
+              Last updated: May 14, 2026
+            </div>
+            
+            <div className="space-y-10 text-slate-600 dark:text-zinc-300 font-medium">
+              <p className="text-lg leading-relaxed">This document describes how <strong>Medical Apps Nepal</strong> ("we", "us", or "our") handles your information and the rules for using the <strong>NMCLE MBBS: Nepal Past Questions</strong> mobile application (the "App").</p>
+
+              <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 p-6 rounded-2xl">
+                <p className="text-amber-800 dark:text-amber-200 font-semibold m-0 flex gap-4 items-start text-sm leading-relaxed">
+                  <span className="text-xl">⚠️</span>
+                  <span><strong>MEDICAL DISCLAIMER:</strong> This App is an educational tool for exam preparation and is NOT a medical device. It does not provide clinical diagnosis or professional medical advice.</span>
+                </p>
+              </div>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">1. Privacy Policy & Information Collection</h3>
+                <p>We collect only the minimum information necessary to provide educational features and secure access:</p>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-emerald-500">
+                  <li><strong>Personal Identifiers:</strong> Name and Email Address provided via secure Google Authentication.</li>
+                  <li><strong>Academic Data:</strong> Your affiliated medical college and year of study (optional).</li>
+                  <li><strong>Study Progress:</strong> Quiz scores, bookmarks, and subject-wise completion rates to sync across your devices.</li>
+                  <li><strong>Technical Data:</strong> Device model and OS version for crash reporting and app optimization.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">2. Data Usage and Tracking</h3>
+                <p>We use your data to personalize your study experience. Tracking technologies are used only to save your progress and analyze app performance. We do not sell your data to third parties.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">3. Data Security & Third-Party Services</h3>
+                <p>We use industry-standard encryption to protect your data. We utilize trusted infrastructure including Supabase and Google Firebase for secure authentication and database management. These partners are legally bound to protect your information.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">4. Data Deletion & Your Rights</h3>
+                <p>In accordance with the <strong>Individual Privacy Act, 2075 (Nepal)</strong>, you have full control over your data:</p>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-emerald-500">
+                  <li><strong>Account Deletion:</strong> You can request account deletion at any time via the App settings or by emailing us.</li>
+                  <li><strong>Processing:</strong> Once requested, all your personally identifiable data will be wiped from our servers within <strong>24 hours</strong>.</li>
+                  <li><strong>Contact:</strong> <a href="mailto:medicalappsnepal@gmail.com" className="font-semibold">medicalappsnepal@gmail.com</a></li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">5. Terms of Service & User Rules</h3>
+                <p>By using this App, you agree to the following conditions:</p>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-emerald-500">
+                  <li><strong>Personal Use:</strong> The content is for your individual study only. Sharing accounts or commercial redistribution of content is prohibited.</li>
+                  <li><strong>Accuracy:</strong> While we aim for 100% accuracy, we are not liable for any errors in MCQs or explanations.</li>
+                  <li><strong>No Affiliation:</strong> This app is an independent project and is NOT affiliated with the Nepal Medical Council (NMC) or any government body.</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+const NmcleTermsOfService = () => {
+  return (
+    <div className="min-h-screen bg-transparent pt-32 pb-24 pointer-events-none">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
+        >
+          <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">NMCLE MBBS: Nepal Past Questions</h1>
+            <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Terms of Service</h2>
+            <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
+              Last updated: May 14, 2026
+            </div>
+            
+            <div className="space-y-10 text-slate-600 dark:text-zinc-300 font-medium">
+              <p className="text-lg leading-relaxed">Welcome to NMCLE MBBS: Nepal Past Questions. These Terms of Service govern your use of our application provided by Medical Apps Nepal. By using the App, you agree to these terms in full.</p>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">1. Purpose of the App</h3>
+                <p>This application is designed specifically as a study aid for students preparing for the Nepal Medical Council Licensing Examination (NMCLE). It provides access to past questions, mock tests, and educational explanations.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">2. Medical Disclaimer</h3>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-emerald-500">
+                  <li><strong>Educational Use Only:</strong> The App is a study tool. It is not a medical device.</li>
+                  <li><strong>No Clinical Advice:</strong> The information provided within the MCQs is for examination preparation purposes and should not be used for patient diagnosis, treatment, or as a substitute for professional medical judgment.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">3. Intellectual Property Rights</h3>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-emerald-500">
+                  <li><strong>Ownership:</strong> All software, design, and curated content (explanations, patterns, and organization) are the property of Medical Apps Nepal.</li>
+                  <li><strong>Usage License:</strong> You are granted a limited, personal, non-exclusive license for individual, non-commercial study.</li>
+                  <li><strong>Prohibited Acts:</strong> You may not scrape, download in bulk, or redistribute any content from this App. Any attempt to "dump" the database will result in an immediate permanent ban.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">4. Accuracy & Liability</h3>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-emerald-500">
+                  <li><strong>Verification:</strong> While we strive for high accuracy, medical guidelines evolve. We are not liable for any discrepancies or for the user’s performance in the actual NMCLE exam.</li>
+                  <li><strong>System Availability:</strong> We aim for 24/7 uptime but are not responsible for technical interruptions or data loss during maintenance.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">5. No Official Affiliation</h3>
+                <p>This App is an independent project. It is not endorsed by, affiliated with, or sponsored by the Nepal Medical Council (NMC) or any government body.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">6. Governing Law</h3>
+                <p>These terms are governed by the laws of Nepal, including the Electronic Transactions Act, 2063.</p>
+              </section>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+const TermsOfService = () => {
+  return (
+    <div className="min-h-screen bg-transparent pt-32 pb-24 pointer-events-none">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white dark:bg-zinc-900 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200 dark:border-zinc-800"
+        >
+          <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">CEE MDMS: Nepal Past Questions</h1>
+            <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Terms of Service</h2>
+            <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
+              Last updated: May 14, 2026
+            </div>
+            
+            <div className="space-y-10 text-slate-600 dark:text-zinc-300 font-medium">
+              <p className="text-lg leading-relaxed">Welcome to CEE MDMS: Nepal Past Questions. By using this mobile application, you agree to comply with and be bound by the following terms. Please read them carefully.</p>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">1. Acceptance of Terms</h3>
+                <p>By accessing or using the App, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree, please do not use the App.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">2. Medical & Educational Disclaimer</h3>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-indigo-500">
+                  <li><strong>Non-Medical Device:</strong> This App is strictly an educational tool for exam preparation. It is not a medical device and does not provide clinical diagnosis, medical advice, or treatment recommendations.</li>
+                  <li><strong>Accuracy:</strong> While we strive for accuracy in our MCQs and explanations, we do not guarantee that the content is error-free. Users should refer to standard medical textbooks for final verification.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">3. User Accounts</h3>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-indigo-500">
+                  <li><strong>Registration:</strong> To access certain features, you must register via Google Authentication.</li>
+                  <li><strong>Security:</strong> You are responsible for maintaining the confidentiality of your account.</li>
+                  <li><strong>Prohibited Conduct:</strong> You agree not to use the App for any unlawful purpose or to circumvent any technological protections.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">4. Intellectual Property & Usage Limits</h3>
+                <p><strong>License:</strong> We grant you a personal, non-exclusive, non-transferable license to use the App for individual study only.</p>
+                <p className="mt-4"><strong>Restrictions:</strong> You are strictly prohibited from:</p>
+                <ul className="list-disc pl-5 mt-4 space-y-3 marker:text-indigo-500">
+                  <li>Scraping, copying, or redistributing the MCQs and study materials.</li>
+                  <li>Sharing your account credentials with others.</li>
+                  <li>Attempting to reverse-engineer the App.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">5. Limitation of Liability</h3>
+                <p>Medical Apps Nepal shall not be liable for any indirect, incidental, or consequential damages resulting from your use or inability to use the App, including but not limited to performance in actual licensing or entrance examinations.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">6. No Official Affiliation</h3>
+                <p>This App is an independent educational platform. It is not affiliated with, endorsed by, or sponsored by the Medical Education Commission (MEC) or any other government body in Nepal.</p>
+              </section>
+
+              <section>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">7. Changes to Terms</h3>
+                <p>We reserve the right to modify these terms at any time. Continued use of the App following any changes constitutes your acceptance of the new terms.</p>
+              </section>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 // --- Main App ---
 
 function App() {
@@ -752,6 +1082,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/ceemdms/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/ceemdms/delete-account" element={<DeleteAccount />} />
+              <Route path="/ceemdms/terms-of-service" element={<TermsOfService />} />
+              <Route path="/nmcle/privacy-policy" element={<NmclePrivacyPolicy />} />
+              <Route path="/nmcle/delete-account" element={<NmcleDeleteAccount />} />
+              <Route path="/nmcle/terms-of-service" element={<NmcleTermsOfService />} />
             </Routes>
           </main>
           <Footer />
