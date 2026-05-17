@@ -7,7 +7,7 @@ import {
   CheckCircle2, BarChart3, Bookmark, Clock, Moon, Sun, ArrowRight, ArrowLeft,
   Star, ChevronRight, Download, CreditCard
 } from 'lucide-react';
-import { AnimatePresence } from 'framer-motion';
+
 
 import { Boxes } from './background-boxes';
 import RealismButton from './shiny-borders-button';
@@ -16,6 +16,42 @@ import PricingSection from './pricing-blocks';
 import { Button as NeonButton } from './components/ui/neon-button';
 
 // --- Components ---
+
+const HoverPopChar = ({ text, className = "", hoverColor = "hover:text-indigo-500 dark:hover:text-indigo-400" }: { text: string; className?: string; hoverColor?: string }) => {
+  return (
+    <span className={`inline-flex items-baseline ${className}`}>
+      {text.split("").map((char, index) => (
+        char === " " ? (
+          <span key={index} className="inline-block w-[0.25em]">&nbsp;</span>
+        ) : (
+          <span
+            key={index}
+            className={`inline-block transition-transform duration-200 ease-out hover:scale-[1.25] hover:-translate-y-1 cursor-default origin-bottom ${hoverColor}`}
+          >
+            {char}
+          </span>
+        )
+      ))}
+    </span>
+  );
+};
+
+const HoverPopBulk = ({ text, suffix = "", className = "" }: { text: string; suffix?: string; className?: string }) => {
+  return (
+    <span className="group inline-flex items-baseline">
+      <span className={`inline-block transition-transform duration-150 ease-out group-hover:scale-[1.05] group-hover:-translate-y-1 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 cursor-default origin-bottom ${className}`}>
+        {text}
+      </span>
+      {suffix && (
+        <span className="inline-flex transition-all duration-150 overflow-hidden ml-1">
+          <span className="transition-all duration-150 group-hover:opacity-0 group-hover:-translate-y-2 group-hover:scale-50 w-[0.5em] group-hover:w-0">
+            {suffix}
+          </span>
+        </span>
+      )}
+    </span>
+  );
+};
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
@@ -394,9 +430,10 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-slate-900 dark:text-white mb-8 leading-[1.1]"
             >
-              Master your <br className="hidden md:block" />
+              <HoverPopChar text="Master your " />
+              <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-indigo-400 dark:to-blue-400">
-                medical exams.
+                <HoverPopChar text="medical exams." hoverColor="hover:text-white dark:hover:text-white" className="text-indigo-600 dark:text-indigo-400" />
               </span>
             </motion.h1>
 
@@ -567,53 +604,66 @@ const Home = () => {
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pointer-events-auto">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-8 backdrop-blur-md">
+            <div className="flex flex-col">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-8 backdrop-blur-md self-start">
                 <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
                 <span className="text-xs font-bold text-white tracking-wide uppercase">Top Rated Medical App</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                CEE MDMS: Nepal Past Questions
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-8 leading-tight">
+                <HoverPopBulk text="CEE MDMS" suffix=":" /> Nepal Past Questions
               </h2>
-              <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-medium">
-                The ultimate companion for medical students in Nepal. Master 20 subjects with memory-based past questions, in-depth explanations, and smart analytics designed for your success.
-              </p>
               
-              <ul className="space-y-5 mb-12">
-                {['20+ Subjects Covered', 'Detailed Rationales', 'Performance Tracking', 'Smart Review'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-slate-200 font-medium text-lg">
-                    <div className="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
-                      <CheckCircle2 className="w-5 h-5" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="lg:hidden relative w-[240px] md:w-[300px] rounded-[2.5rem] bg-slate-800 p-3 shadow-2xl shadow-indigo-500/20 border border-slate-700 mb-10 mx-auto rotate-[-4deg] hover:rotate-0 transition-transform duration-700 ease-out group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-blue-500 rounded-[3rem] opacity-20 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" />
+                <img 
+                  src="https://drive.google.com/thumbnail?id=1Dkmh9CoL8h8kBAMhyzGp85T9zTOFK1WA&sz=w1000" 
+                  alt="App Logo" 
+                  className="w-full h-auto rounded-[2.5rem] relative z-10"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
 
               <div className="flex flex-col items-start gap-6 w-full">
-                <PricingSection />
+                <div className="w-full">
+                  <ul className="space-y-5 mb-12">
+                    {['20+ Subjects Covered', 'Detailed Rationales', 'Performance Tracking'].map((item, i) => (
+                      <li key={i} className="flex items-center gap-4 text-slate-200 font-medium text-lg">
+                        <div className="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                          <CheckCircle2 className="w-5 h-5" />
+                        </div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
 
-                <GlowingShadow>
-                  <a 
-                    href="https://play.google.com/store/apps/details?id=com.mdmsnepal"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white font-bold transition-all duration-300"
-                  >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.593 1.343a1.86 1.86 0 0 0-.48 1.31v18.694c0 .524.186.98.48 1.31l.063.06 10.51-10.51v-.214L3.656 1.283l-.063.06z" fill="#00E676"/>
-                      <path d="M17.495 15.244l-3.328-3.328v-.214l3.328-3.328.083.047 3.94 2.24c1.127.64 1.127 1.688 0 2.328l-3.94 2.24-.083.047z" fill="#FFC107"/>
-                      <path d="M14.167 11.916l-10.574 10.574c-.36.36-.94.407-1.46.113l12.034-6.84 3.84-2.184-3.84-1.663z" fill="#FF3D00"/>
-                      <path d="M14.167 11.916L18.007 10.253l-3.84-2.184-12.034-6.84c.52-.294 1.1-.247 1.46.113l10.574 10.574z" fill="#29B6F6"/>
-                    </svg>
-                    Download on Google Play
-                  </a>
-                </GlowingShadow>
+                  <div className="hidden lg:flex flex-col items-start gap-6 w-full mb-10 lg:mb-0">
+                    <PricingSection />
+                  </div>
+                </div>
+
+                <div className="w-full lg:mt-0">
+                  <GlowingShadow>
+                    <a 
+                      href="https://play.google.com/store/apps/details?id=com.mdmsnepal"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-white font-bold transition-all duration-300"
+                    >
+                      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.593 1.343a1.86 1.86 0 0 0-.48 1.31v18.694c0 .524.186.98.48 1.31l.063.06 10.51-10.51v-.214L3.656 1.283l-.063.06z" fill="#00E676"/>
+                        <path d="M17.495 15.244l-3.328-3.328v-.214l3.328-3.328.083.047 3.94 2.24c1.127.64 1.127 1.688 0 2.328l-3.94 2.24-.083.047z" fill="#FFC107"/>
+                        <path d="M14.167 11.916l-10.574 10.574c-.36.36-.94.407-1.46.113l12.034-6.84 3.84-2.184-3.84-1.663z" fill="#FF3D00"/>
+                        <path d="M14.167 11.916L18.007 10.253l-3.84-2.184-12.034-6.84c.52-.294 1.1-.247 1.46.113l10.574 10.574z" fill="#29B6F6"/>
+                      </svg>
+                      Download on Google Play
+                    </a>
+                  </GlowingShadow>
+                </div>
               </div>
             </div>
 
-            <div className="relative flex justify-center lg:justify-end">
+            <div className="hidden lg:flex relative justify-end">
               <div className="relative w-[300px] md:w-[360px] rounded-[3rem] bg-slate-800 p-3 shadow-2xl shadow-indigo-500/20 border border-slate-700 rotate-[-4deg] hover:rotate-0 transition-transform duration-700 ease-out group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-blue-500 rounded-[3rem] opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
                 <img 
@@ -634,7 +684,7 @@ const Home = () => {
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pointer-events-auto">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div className="order-2 lg:order-1 relative flex justify-center lg:justify-start">
+            <div className="hidden lg:flex relative justify-start">
               <div className="relative w-[300px] md:w-[360px] rounded-[3rem] bg-slate-800 p-3 shadow-2xl shadow-emerald-500/20 border border-slate-700 rotate-[4deg] hover:rotate-0 transition-transform duration-700 ease-out group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-[3rem] opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
                 <img 
@@ -646,35 +696,48 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-8 backdrop-blur-md">
+            <div className="flex flex-col">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-8 backdrop-blur-md self-start">
                 <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
                 <span className="text-xs font-bold text-white tracking-wide uppercase">New Release</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                NMCLE MBBS: Nepal Past Questions
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-8 leading-tight">
+                <HoverPopBulk text="NMCLE MBBS" suffix=":" /> Nepal Past Questions
               </h2>
-              <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-medium">
-                The ultimate companion for medical students in Nepal. Master 20 subjects with memory-based past questions, in-depth explanations, and smart analytics designed for your success.
-              </p>
               
-              <ul className="space-y-5 mb-12">
-                {['20+ Subjects Covered', 'Detailed Rationales', 'Performance Tracking', 'Smart Review'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-slate-200 font-medium text-lg">
-                    <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-                      <CheckCircle2 className="w-5 h-5" />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
+              <div className="lg:hidden relative w-[240px] md:w-[300px] rounded-[2.5rem] bg-slate-800 p-3 shadow-2xl shadow-emerald-500/20 border border-slate-700 mb-10 mx-auto rotate-[4deg] hover:rotate-0 transition-transform duration-700 ease-out group">
+                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-[3rem] opacity-20 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" />
+                <img 
+                  src="https://drive.google.com/thumbnail?id=1pLTxitMyYgvNmydhSiYcM4TePgY4BNlv&sz=w1000" 
+                  alt="NMCLE MBBS App Logo" 
+                  className="w-full h-auto rounded-[2.5rem] relative z-10"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              
               <div className="flex flex-col items-start gap-6 w-full">
-                <PricingSection />
+                <div className="w-full">
+                  <ul className="space-y-5 mb-12">
+                    {['20+ Subjects Covered', 'Detailed Rationales', 'Performance Tracking'].map((item, i) => (
+                      <li key={i} className="flex items-center gap-4 text-slate-200 font-medium text-lg">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                          <CheckCircle2 className="w-5 h-5" />
+                        </div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-slate-800 text-slate-400 font-bold border border-slate-700 cursor-not-allowed">
-                  Coming Soon
+                  <div className="hidden lg:flex flex-col items-start gap-6 w-full mb-10 lg:mb-0">
+                    <PricingSection />
+                  </div>
+                </div>
+
+                <div className="w-full lg:mt-0">
+                  <div className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-slate-800 text-slate-400 font-bold border border-slate-700 cursor-not-allowed">
+                    Coming Soon
+                  </div>
                 </div>
               </div>
             </div>
@@ -691,12 +754,18 @@ const Home = () => {
           <p className="text-xl text-slate-600 dark:text-zinc-400 mb-12 font-medium max-w-2xl mx-auto">
             Join thousands of medical students who are already using our platform to prepare smarter and score higher.
           </p>
-          <NeonButton 
-            onClick={() => window.open("https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US", "_blank", "noopener,noreferrer")}
-            className="font-bold text-lg px-8 py-4"
-          >
-            Visit Store
-          </NeonButton>
+          <div className="mb-16">
+            <NeonButton 
+              onClick={() => window.open("https://play.google.com/store/apps/dev?id=6711800083996272321&hl=en-US", "_blank", "noopener,noreferrer")}
+              className="font-bold text-lg px-8 py-4"
+            >
+              Visit Store
+            </NeonButton>
+          </div>
+          
+          <div className="lg:hidden w-full text-left">
+            <PricingSection />
+          </div>
         </div>
       </section>
     </div>
@@ -719,7 +788,7 @@ const PrivacyPolicy = () => {
             </Link>
           </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">CEE MDMS: Nepal Past Questions</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2"><HoverPopBulk text="CEE MDMS" suffix=":" /> Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Privacy Policy & Terms of Service</h2>
             <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
               Last updated: December 28, 2025
@@ -799,7 +868,7 @@ const DeleteAccount = () => {
             </Link>
           </div>
           <div className="text-center mb-10">
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">CEE MDMS: Nepal Past Questions</h1>
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3"><HoverPopBulk text="CEE MDMS" suffix=":" /> Nepal Past Questions</h1>
             <h2 className="text-xl md:text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium">Delete Account</h2>
             <p className="text-slate-600 dark:text-zinc-400 font-medium">
               Request account deletion for <strong>CEE MDMS: Nepal Past Questions</strong>.
@@ -842,7 +911,7 @@ const NmcleDeleteAccount = () => {
             </Link>
           </div>
           <div className="text-center mb-10">
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">NMCLE MBBS: Nepal Past Questions</h1>
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3"><HoverPopBulk text="NMCLE MBBS" suffix=":" /> Nepal Past Questions</h1>
             <h2 className="text-xl md:text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium">Delete Account</h2>
             <p className="text-slate-600 dark:text-zinc-400 font-medium">
               Request account deletion for <strong>NMCLE MBBS: Nepal Past Questions</strong>.
@@ -885,7 +954,7 @@ const NmclePrivacyPolicy = () => {
             </Link>
           </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">NMCLE MBBS: Nepal Past Questions</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2"><HoverPopBulk text="NMCLE MBBS" suffix=":" /> Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Privacy Policy & Terms of Service</h2>
             <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
               Last updated: May 14, 2026
@@ -965,7 +1034,7 @@ const NmcleTermsOfService = () => {
             </Link>
           </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">NMCLE MBBS: Nepal Past Questions</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2"><HoverPopBulk text="NMCLE MBBS" suffix=":" /> Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Terms of Service</h2>
             <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
               Last updated: May 14, 2026
@@ -1037,7 +1106,7 @@ const TermsOfService = () => {
             </Link>
           </div>
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">CEE MDMS: Nepal Past Questions</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2"><HoverPopBulk text="CEE MDMS" suffix=":" /> Nepal Past Questions</h1>
             <h2 className="text-2xl text-slate-500 dark:text-zinc-400 mb-4 font-medium mt-0">Terms of Service</h2>
             <div className="inline-block px-3 py-1 bg-slate-100 dark:bg-zinc-800 rounded-full text-sm font-semibold text-slate-600 dark:text-zinc-300 mb-12">
               Last updated: May 14, 2026
